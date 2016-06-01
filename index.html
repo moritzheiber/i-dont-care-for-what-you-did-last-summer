@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>I don't care what you did last summer</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <style>
+      @import url(http://fonts.googleapis.com/css?family=Open+Sans:900,700,800,400,300);
+
+      body {
+        font-family: 'Open Sans';
+        color: #efefef;
+      }
+
+      a:link, a:visited, a:hover, a:active {
+        color: #efefef;
+      }
+
+      .remark-slide-content {
+        background-color: black;
+      }
+
+      h1, h2, h3 {
+        font-family: 'Open Sans';
+        font-weight: 900;
+        text-transform: uppercase;
+        letter-spacing: -0.05em;
+        text-shadow: 2px 2px #121212;
+      }
+
+      .quote {
+        background-color: #efefef;
+        color: #121212;
+        text-align: justify;
+        border: 1px solid white;
+        box-shadow: 1px 1px 10px #efefef;
+        font-size: 1.2em;
+      }
+
+      .citation {
+        font-size: 0.5em;
+      }
+
+      .backgroundblue { background-color: rgb(26,115,186); }
+      .backgroundgreen { background-color: rgb(17,170,88); }
+      .backgroundwhite { background-color: #FFF; }
+
+      .image img {
+        border-radius: 10px;
+        border: 1px solid #efefef;
+        max-width: 100%;
+      }
+
+      .image-smaller img {
+        border-radius: 10px;
+        border: 1px solid #efefef;
+        max-width: 100%;
+        max-height: 400px;
+      }
+
+      .header {
+        position: absolute;
+        left: 5px;
+        top: 5px;
+      }
+
+      .footnote {
+        position: absolute;
+        left: 5px;
+        bottom: 0px;
+      }
+
+      .footnote img {
+        max-width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+class: middle, center, backgroundblue
+layout: true
+count: false
+
+.footnote[![tw-logo](images/logos/TW Colour Logos_trans_white.png)]
+
+---
+background-image: url(images/background1.jpg)
+
+# I don't care what you did last summer
+## Continuous Delivery + Immutable Servers
+
+???
+
+- Hello everybody, welcome! Thank you for being here
+- I'm going to be talking about Continuous Delivery and Immutable Servers today, what it is, what's so important about and why you probably want it :)
+
+---
+
+.image[
+![business-card](images/business-card.jpg)
+]
+
+???
+
+- My name is Moritz Heiber, I work for Thoughtworks
+- I work with clients to enable them to transform their culture to include DevOps methodologies, and Continuous Delivery and Immutable Servers are two very exciting ways of enabling teams to run their own software independently and with a strong sense of ownership
+
+---
+
+.image[
+![](images/ops-problem.jpg)
+]
+
+???
+
+- It will help to prevent you from falling into the trap of reckless, irresponsible development and clear cut department silos
+
+---
+
+.left[
+# Leverage technology
+# to empower teams
+]
+
+---
+background-image: url(images/build-pipeline.jpg)
+
+# Continuous Delivery
+
+???
+
+- Let me start by talking about Continuous Delivery by looking at the definition Wikipedia is giving you if you're looking it up
+
+---
+
+.quote[
+> Continuous Delivery (CD) is a set of practices and principles in software engineering aimed at, **building, testing, and releasing software, faster and more frequently**. These principles help **reduce the cost, time and risk of delivering changes**, and ultimately value, to customers by allowing for **more incremental changes to applications in production**.
+]
+
+.right[.citation[https://en.wikipedia.org/wiki/Continuous_delivery (emphasize are mine)]]
+
+???
+
+- More value for users, faster .. that's what everyone wants, right, or at least everyone should want it
+- Incremental changes, tiny steps instead of huge, bloated changes you'll never be able to verify beforehand much less deploy efficiently
+  - That release button/lever of your's needs to die!
+  - Signing off on releases needs to go away!
+- And if you worry less about how you're going to get your code into production you have more time to focus on what's important: writing code
+
+---
+
+.left[
+## Continuous Delivery works
+## with the power of pipelines
+]
+
+.image[
+![gocd](images/gocd.jpg)
+]
+
+.right[.citation[https://go.cd]]
+
+???
+
+- This is the manifestation of a continuous delivery life cycle
+  - A release pipeline, taking the modified source code and initiating a build
+  - That build is getting integrated and tested
+  - Possibly deployed to a staging environment, for manual testing or approval
+  - And in the end the code in this pipeline ends up in production, all in one sweep
+- Ideally, all of these steps are well defined and can be logically separated.
+
+---
+
+.left[
+# Continuous Delivery
+# lets you work with
+# small, incremental steps
+]
+
+???
+
+- Why did we build gigantic monolithic applications in the past?
+  - I'd say largely because we were deploying them the way we did in the past 30 years
+  - Continuous Delivery is the evolution, the next step in the right direction when it comes to building software
+  - Continuous Delivery is what enables you to write great code with small, incremental changes
+- Your software stack and design need to support CD
+- A gigantic mess of spaghetti code is hardly CD enabled
+  - If it takes one release 3 hours to build I wouldn't do CD either
+- Don't have to be microservices, but it helps ;)
+  - But at least try to split some of your code into logical, independent units connected by open protocols
+
+---
+
+.left[
+### Writing tests now has a reason
+]
+
+# Trust. Your. Code.\*
+
+.left[
+**\* QA does not equal healthy code!**
+]
+
+???
+
+- Your code needs to have a test coverage which is above average to ensure you're delivering healthy code
+- Healthy code implies and instills confidence and trust in delivering it anywhere
+- This isn't the job of QA!
+  - They are not your dumb test monkeys!
+  - Imagine QA as a bunch of intelligent, bad ass mad scientists trying to continuously tear the very fabric of your product apart
+  - They are supposed to be the part of your team covering your asses and thinking of problems you hadn't dare to dream about
+
+---
+background-image: url(images/break-production.jpg)
+
+.left[
+## I'm going to break
+## production, aren't I?
+]
+
+.header[
+.citation[
+Source: http://dogstable.com/?featured=new-tech-uses-hardware-software-to-train-dogs-more-efficiently
+]
+]
+---
+
+.left[
+# Delivery does not
+# mean releasing changes
+### If you're afraid of deploying you're doing it wrong
+]
+
+???
+
+- You should not be afraid to deliver code to production immediately
+- There should not be a "trigger" somewhere that you'd have to press manually for delivery
+  - Otherwise it's "Stuttering Delivery"
+- Focus on decoupling deployments and delivery from feature releases, e.g. through feature toggles, A/B testing, canary releases and blue/green deployments
+
+---
+
+# Pipelines need artifacts
+
+???
+
+- If you're using Continuous Delivery you most likely want to pass artifacts (your code, some tests results etc.) from pipeline step to pipeline step
+  - If you aren't doing this it's not a pipeline, it's a set of independent build instructions
+  - Pipelines are meant to act as a workflow, a unified process which takes code as an argument and delivers it to your users
+  - The steps in between, while isolated, should rely on the information provided by the step before them, i.e. an artifact that's passed along
+- And this is where we come to immutable infrastructure
+
+---
+background-image: url(images/immutable-servers.jpg)
+
+# Immutable servers*
+
+.left[
+** \* Also known as immutable infrastructure\*\* **
+
+\*\* Also known as "phoenix servers"
+]
+
+???
+
+- You never re-use existing Infrastructure, instead, you re-create it from scratch, test its viability, make the switch, and then throw away the old stack
+- The core concept is: Your infrastructure is an artifact just like your software is within a CD cycle
+- It's a unique software build alongside a unique, immutable infrastructure configuration
+  - Together they are one single artifact
+- Doesn't change, only applies to a unique moment in time in your development
+
+---
+
+.left[
+# Artifact Driven Delivery
+]
+
+.image[![](images/artifact-driven-delivery.jpg)]
+
+???
+
+- Pipelines need artifacts to work efficiently, but why should this just apply to your code?
+- Infrastructure should be a part of the artifact you are producing within your pipeline workflow
+- Redeploying a certain, immutable artifact from a pipeline run shouldn't make a difference in time, especially when it comes to Infrastructure deployments
+- If you are doing this you'll reap a lot more benefits from Continuous Delivery than from any other way of deploying
+
+---
+
+.left[
+# Atomic deployments
+# with Infrastructure
+# as code
+]
+
+???
+
+- If you aren't using Infrastructure provisioning yet you should be, without it you will never be able to make great strides when it comes to Continuous Delivery or Immutable Servers
+- With it, if you deploy infrastructure once it will work over and over again the exact same way
+- Your software artifacts and Infrastructure code are combined into an immutable package, identified by a single commit/software version
+  - They are essentially atomic
+- You can go back and forth seamlessly, at the push of a button even!
+- To show you what I mean, let's take a look at a very small and stupid example application I've written
+
+---
+
+# Live Demo
+https://github.com/moritzheiber/hello-world-app
+
+???
+
+- Show app on GitHub
+- Show Snap-CI integration
+- Talk about deployment on AWS (CloudFormation, Route53, EC2/ELB/AutoScaling)
+
+- Change text in index.html
+- Show progress on Snap-CI
+- Show progress in AWS console for CloudFormation
+- Show deployed, new app website saying "Hello insert-venue-name!"
+
+---
+
+.left[
+# Summary
+
+### Build software faster, without barriers/boundaries
+### Atomic, bundled, artifact driven infrastructure management
+### Enables you to build business focussed, efficient DevOps teams
+]
+
+???
+
+- Continues delivery enables software development without barriers and impediment
+- Immutable servers allow for atomic, artifact bundled infrastructure management
+- Both combined enable effective, efficient DevOps teams with a business focus and a strong sense of ownership
+
+---
+class: backgroundblue
+
+# One more thing...
+
+???
+
+- Switch back to website and show new text
+
+---
+
+# Questions?
+
+.image-smaller[
+![questions](images/questions.jpg)
+]
+
+---
+
+## Thank you!
+
+https://github.com/moritzheiber/i-dont-care-for-what-you-did-last-summer
+
+<i class="fa fa-twitter"></i> moritzheiber | <i class="fa fa-envelope"></i> mheiber@thoughtworks.com | <i class="fa fa-home"></i> heiber.im
+
+    </textarea>
+    <script src="https://gnab.github.io/remark/downloads/remark-latest.min.js">
+    </script>
+    <script>
+      var slideshow = remark.create({
+        ratio: '4:3'
+      });
+    </script>
+  </body>
+</html>
